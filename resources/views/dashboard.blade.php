@@ -11,6 +11,15 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     You're logged in!
                 </div>
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <ul>
+                        @foreach($drivers as $driver)
+                        <li>
+                            <a href="/taxi/call/{{ $driver->id }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ $driver->name }}</a>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NotificationController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/taxi/call/{driver}', [NotificationController::class, 'notifyToDriver'])->middleware(['passenger']);
 
 require __DIR__.'/auth.php';
