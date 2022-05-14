@@ -11,6 +11,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     You're logged in!
                 </div>
+                @if(auth()->user()->type == 'passenger')
                 <div class="p-6 bg-white border-b border-gray-200">
                     <ul>
                         @foreach($drivers as $driver)
@@ -20,6 +21,18 @@
                         @endforeach
                     </ul>
                 </div>
+                @endif
+                @if(auth()->user()->type == 'driver')
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <ul>
+                        @foreach($passengers as $passenger)
+                        <li>
+                            <a href="/taxi/arrived/{{ $passenger->id }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ $passenger->name }}</a>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
             </div>
         </div>
     </div>

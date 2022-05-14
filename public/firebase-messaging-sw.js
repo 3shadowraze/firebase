@@ -1,32 +1,14 @@
-// Give the service worker access to Firebase Messaging.
-// Note that you can only use Firebase Messaging here. Other Firebase libraries
-// are not available in the service worker.importScripts('https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/8.3.2/firebase-messaging.js');
-/*
-Initialize the Firebase app in the service worker by passing in the messagingSenderId.
-*/
+   
 firebase.initializeApp({
-    apiKey: "AIzaSyD64FSn8mgcA7kFjD9ZnVov77Z6ZTv9_rs",
-    authDomain: "ding-ffe07.firebaseapp.com",
-    projectId: "ding-ffe07",
-    storageBucket: "ding-ffe07.appspot.com",
-    messagingSenderId: "113075762214",
-    appId: "1:113075762214:web:c3af23b473a2438c82a2e7"
+    apiKey: "AIzaSyBo8mV4LejIJrDHIpBEO7jIlJjsNe6IX4E",
+    projectId: "taban-f4cf2.firebaseapp.com",
+    messagingSenderId: "570241229650",
+    appId: "1:570241229650:web:6d29be103ba9b3a559108b"
 });
-
-// Retrieve an instance of Firebase Messaging so that it can handle background
-// messages.
+  
 const messaging = firebase.messaging();
-messaging.setBackgroundMessageHandler(function (payload) {
-    console.log("Message received.", payload);
-    const title = "Hello world is awesome";
-    const options = {
-        body: "Your notificaiton message .",
-        icon: "/firebase-logo.png",
-    };
-    return self.registration.showNotification(
-        title,
-        options,
-    );
+messaging.setBackgroundMessageHandler(function({data:{title,body,icon}}) {
+    return self.registration.showNotification(title,{body,icon});
 });
